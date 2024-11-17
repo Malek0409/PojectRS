@@ -20,11 +20,19 @@ const userSchema = new mongoose.Schema(
       lowercase: true,
       trim: true,
     },
+
     password: {
       type: String,
       required: true,
-      max: 1024,
-      minLength: 6,
+      minlength: 8,
+      maxlength: 16,
+      validate: {
+        validator: function (value) {
+          return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/.test(
+            value
+          );
+        },
+      },
     },
     picture: {
       type: String,

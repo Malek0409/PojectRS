@@ -22,7 +22,7 @@ const corsOptions = {
   preflightContinue: false,
 };
 
-app.use(cors({ corsOptions }));
+app.use(cors(corsOptions));
 
 app.get("*", checkUser);
 app.get("/jwtid", requireAuth, (req, res) => {
